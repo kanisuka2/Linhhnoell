@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎄 Noel Surprise 🎄</title>
+<title>🎄 Noel cho Linh 🎄</title>
 
 <style>
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at top,#2a003d,#000);
+  background:radial-gradient(circle at top,#3a005c,#000);
   overflow:hidden;
   font-family:monospace;
   color:white;
@@ -20,45 +20,30 @@ body{
   text-align:center;
 }
 
-/* ❄️ TUYẾT */
-.snow{
+/* ❄️ TUYẾT + ⭐ + 💖 */
+.fall{
   position:fixed;
-  top:-10px;
-  color:white;
+  top:-20px;
   user-select:none;
+  pointer-events:none;
   animation:fall linear infinite;
 }
 @keyframes fall{
-  to{transform:translateY(110vh)}
-}
-
-/* 💖 TIM */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  color:pink;
-  animation:float 5s linear infinite;
-}
-@keyframes float{
-  to{
-    transform:translateY(-120vh) scale(1.5);
-    opacity:0;
-  }
+  to{transform:translateY(120vh)}
 }
 
 /* 🎄 CÂY THÔNG */
 .tree{
-  font-size:30px;
+  font-size:32px;
   line-height:1.1;
-  cursor:pointer;
   user-select:none;
 }
 .star{
   color:gold;
-  text-shadow:0 0 20px gold;
+  text-shadow:0 0 25px gold;
 }
 .light{
-  animation:blink 1.2s infinite alternate;
+  animation:blink 1.3s infinite alternate;
 }
 @keyframes blink{
   0%{color:red}
@@ -68,80 +53,93 @@ body{
   100%{color:lime}
 }
 
-/* 📝 INPUT */
+/* 🎁 QUÀ */
+.gifts{
+  margin-top:10px;
+  font-size:36px;
+}
+
+/* INPUT & BUTTON */
 input{
-  margin-top:20px;
-  padding:12px 20px;
+  margin-top:18px;
+  padding:12px 22px;
   border-radius:30px;
   border:none;
   font-size:18px;
   outline:none;
 }
-
-/* 🎁 NÚT */
 button{
   margin-top:15px;
-  padding:14px 32px;
+  padding:14px 34px;
   font-size:18px;
   border:none;
   border-radius:40px;
   background:linear-gradient(135deg,#ff5fa2,#ff85c2);
   color:white;
   cursor:pointer;
-  box-shadow:0 0 25px rgba(255,120,180,.8);
+  box-shadow:0 0 30px rgba(255,120,180,.9);
 }
 
-/* 💌 BẤT NGỜ */
-#surprise{
+/* 💌 THÔNG ĐIỆP */
+#msg{
   display:none;
   margin-top:20px;
-  font-size:30px;
+  font-size:32px;
   color:#ffb6d9;
-  text-shadow:0 0 15px pink;
+  text-shadow:0 0 20px pink;
+}
+#error{
+  display:none;
+  margin-top:10px;
+  color:#ccc;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ❄️ TUYẾT RƠI RẤT NHIỀU -->
+<!-- ❄️ + 💖 + ⭐ RƠI RẤT NHIỀU -->
 <script>
-for(let i=0;i<180;i++){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.innerHTML="❄";
-  s.style.left=Math.random()*100+"vw";
-  s.style.fontSize=10+Math.random()*20+"px";
-  s.style.opacity=Math.random();
-  s.style.animationDuration=3+Math.random()*5+"s";
-  document.body.appendChild(s);
+const icons=["❄","💖","⭐"];
+for(let i=0;i<260;i++){
+  const f=document.createElement("div");
+  f.className="fall";
+  f.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.fontSize=14+Math.random()*22+"px";
+  f.style.opacity=Math.random();
+  f.style.animationDuration=3+Math.random()*6+"s";
+  document.body.appendChild(f);
 }
 </script>
 
 <!-- 🎄 CÂY THÔNG -->
 <div class="tree">
-           <span class="star">⭐</span><br>
-          <span class="light">***</span><br>
-         <span class="light">*****</span><br>
-        <span class="light">*******</span><br>
-       <span class="light">*********</span><br>
-      <span class="light">***********</span><br>
-     <span class="light">*************</span><br>
-    <span class="light">***************</span><br>
-   <span class="light">*****************</span><br>
-  <span class="light">*******************</span><br>
- <span class="light">*********************</span><br>
-             |||<br>
-             |||
+            <span class="star">⭐</span><br>
+           <span class="light">***</span><br>
+          <span class="light">*****</span><br>
+         <span class="light">*******</span><br>
+        <span class="light">*********</span><br>
+       <span class="light">***********</span><br>
+      <span class="light">*************</span><br>
+     <span class="light">***************</span><br>
+    <span class="light">*****************</span><br>
+   <span class="light">*******************</span><br>
+  <span class="light">*********************</span><br>
+              |||<br>
+              |||
 </div>
 
+<!-- 🎁 QUÀ -->
+<div class="gifts">🎁 🎁 🎁 🎁 🎁</div>
+
 <!-- 📝 NHẬP TÊN -->
-<input id="nameInput" placeholder="Nhập tên vào đây nè 💖">
+<input id="nameInput" placeholder="Nhập tên vào đây nha 💕">
 
-<!-- 🎵 + 🎁 -->
-<button onclick="playAndSurprise()">🎶 BẤM ĐỂ BẤT NGỜ 🎁</button>
+<button onclick="checkName()">🎶 MỞ QUÀ NOEL 🎶</button>
 
-<div id="surprise"></div>
+<div id="msg">🎄 Mery chít mợt Linh 🎄<br>💖 Điều bất ngờ chỉ dành cho em 💖</div>
+<div id="error">🙈 Hình như chưa đúng tên rồi…</div>
 
 <!-- 🎵 NHẠC -->
 <audio id="music" preload="auto">
@@ -150,29 +148,20 @@ for(let i=0;i<180;i++){
 
 <script>
 const music=document.getElementById("music");
-const surprise=document.getElementById("surprise");
+const msg=document.getElementById("msg");
+const error=document.getElementById("error");
 
-/* 💖 TIM BAY NHIỀU */
-function hearts(){
-  for(let i=0;i<80;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="💖";
-    h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=16+Math.random()*20+"px";
-    h.style.animationDuration=3+Math.random()*4+"s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
+function checkName(){
+  const name=document.getElementById("nameInput").value.trim().toLowerCase();
+  if(name==="linh"){
+    error.style.display="none";
+    msg.style.display="block";
+    music.currentTime=0;
+    music.play();
+  }else{
+    error.style.display="block";
+    msg.style.display="none";
   }
-}
-
-function playAndSurprise(){
-  const name=document.getElementById("nameInput").value || "bé yêu";
-  music.currentTime=0;
-  music.play();      // ← chắc chắn có nhạc
-  surprise.innerHTML=`🎄 Mery chít mợt ${name} 🎄<br>💖 Anh chúc em luôn cười nha 💖`;
-  surprise.style.display="block";
-  hearts();
 }
 </script>
 
